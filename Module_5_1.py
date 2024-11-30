@@ -4,7 +4,7 @@ class House:
         self.number_of_floors = int(number_of_floors)
 
     def go_to (self, new_floor):
-        if 1 <= new_floor <= self.number_of_floors:
+        if 1 <= int(new_floor) <= self.number_of_floors:
             for i in range(1, new_floor + 1):
                 print(i)
         else:
@@ -15,6 +15,46 @@ class House:
 
     def __str__(self):
         return f'Название: "{self.name}", кол-во этажей: {self.number_of_floors}'
+
+    def __eq__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
+
+    def __lt__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
+
+    def __le__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors <= other.number_of_floors
+
+    def __gt__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors > other.number_of_floors
+
+    def __ge__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors >= other.number_of_floors
+
+    def __ne__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors != other.number_of_floors
+
+    def __add__(self, value):
+        if isinstance(value, int):
+            self.number_of_floors += value
+        return self
+
+    def __radd__(self, value):
+        if isinstance(value, int):
+            self.number_of_floors += value
+        return self
+
+    def __iadd__(self, value):
+        if isinstance(value, int):
+            self.number_of_floors += value
+        return self
+
 
 building1 = House('Монохром', 25)
 building2 = House('Кругляк', 9)
@@ -35,3 +75,17 @@ print(len(building1))
 print(len(building2))
 print(len(building3))
 print(len(building4))
+
+print(building1 == building2) # __eq__
+building2 = building2 + 16 # __add__
+print(building2)
+print(building1 == building2)
+building3 += 8 # __iadd__
+print(building3)
+building4 = 10 + building4 # __radd__
+print(building4)
+print(building1 > building2) # __gt__
+print(building1 >= building2) # __ge__
+print(building3 < building4) # __lt__
+print(building3 <= building4) # __le__
+print(building2 != building4) # __ne__
