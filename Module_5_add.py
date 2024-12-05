@@ -22,11 +22,6 @@ class Video:
         if isinstance(other, Video):
             return self.title == other.title
 
-    # def __contains__(self, item):
-    #     if isinstance(item, Video):
-    #         return item == self.title
-
-
 class UrTube:
 
     def __init__(self, users = None, videos = None, current_user = None):
